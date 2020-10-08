@@ -36,6 +36,8 @@
                 color:#1A6AA2;
                 letter-spacing: 4px;
                 font-family: 'Roboto', sans-serif;
+                padding-top: 0;
+                margin-top: 0;
             }
             #right p{
                 color:#102A42;
@@ -45,6 +47,14 @@
             }
             #random{
                 color:#829AB0;
+                font-size: 17px;
+                font-family: 'Roboto', sans-serif;
+            }
+            #time_grid{
+                display: grid;
+                grid-template-columns: 20% 20% 20% 20%;
+                grid-column-gap: 20px;
+
             }
 
            
@@ -66,15 +76,24 @@
 
         <div id="right">
             <h1>OLD IPHONE GIVEAWAY</h1>
-            <p>Giveaway Ends On <span id="day">Sunday</span>,<span id="date">18 </span><span id="month">October </span><span id="year">2020</span></p>
-            <p><span id="hours">11</span>:<span id="minutes">30</span><span id="am">pm</span></p>
+            <p>Giveaway Ends On <span id="end_day">Sunday</span>,<span id="end_date">0 </span><span id="end_month"> </span><span id="end_year"></span></p>
+            <p><span id="end_hours">11</span>:<span id="end_minutes">30</span><span id="end_am">am</span></p>
 
-            <p id="random">
+            <h5 id="random">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
                 Reprehenderit molestiae cum libero atque ut voluptate qui consectetur aliquid incidunt 
                 voluptatem quos, dolore, non commodi quaerat aliquam eligendi, quisquam totam blanditiis.
 
-            </p>
+            </h5>
+            <div id="time_grid">
+            <div id="day_flex">
+                <div id="day"></div>
+                <div class="text">DAYS</div>
+
+            </div>
+
+            </div>
+
         </div>
 
 
@@ -82,7 +101,45 @@
 
 
         <script>
+            window.onload = function(){
+                const month = new Array();
+                month[0] = "January";
+                    month[1] = "February";
+                    month[2] = "March";
+                    month[3] = "April";
+                    month[4] = "May";
+                    month[5] = "June";
+                    month[6] = "July";
+                    month[7] = "August";
+                    month[8] = "September";
+                    month[9] = "October";
+                    month[10] = "November";
+                    month[11] = "December";
 
+
+
+                    const weekday = new Array(7);
+                    weekday[0] = "Sunday";
+                    weekday[1] = "Monday";
+                    weekday[2] = "Tuesday";
+                    weekday[3] = "Wednesday";
+                    weekday[4] = "Thursday";
+                    weekday[5] = "Friday";
+                    weekday[6] = "Saturday";
+                                    
+                let d = new Date();
+                //Adding 10 days to today's date: Todays Date + (10 days * 24 hours * 60 min * 60 sec * 1000 millisecond)
+                let plus_ten_date = new Date(d.getTime()+(10*24*60*60*1000));
+
+
+                document.getElementById("end_day").innerHTML=weekday[plus_ten_date.getDay()];
+                document.getElementById("end_date").innerHTML=plus_ten_date.getDate()+" ";
+                document.getElementById("end_month").innerHTML=month[plus_ten_date.getMonth()]+" ";
+                document.getElementById("end_year").innerHTML=plus_ten_date.getFullYear();
+                
+                
+                
+                }
 
 
 
