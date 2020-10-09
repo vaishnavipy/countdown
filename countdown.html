@@ -52,9 +52,23 @@
             }
             #time_grid{
                 display: grid;
-                grid-template-columns: 20% 20% 20% 20%;
+                grid-template-columns: 15% 15% 15% 15%;
                 grid-column-gap: 20px;
+              
+                color: white;
+                
+                text-align: center;
 
+            }
+            .box{
+                background-color: #102A42;
+                padding: 10px;
+                
+            }
+            .numbers{
+
+                font-size: 35px;
+                letter-spacing: 4px;
             }
 
            
@@ -86,9 +100,24 @@
 
             </h5>
             <div id="time_grid">
-            <div id="day_flex">
-                <div id="day"></div>
+            <div class="box">
+                <div class="numbers" id="day"></div>
                 <div class="text">DAYS</div>
+
+            </div>
+            <div  class="box">
+                <div  class="numbers" id="hour">09</div>
+                <div class="text">HOURS</div>
+
+            </div>
+            <div  class="box">
+                <div  class="numbers" id="min">09</div>
+                <div class="text">MINS</div>
+
+            </div>
+            <div  class="box">
+                <div class="numbers" id="sec">09</div>
+                <div class="text">SECS</div>
 
             </div>
 
@@ -127,16 +156,46 @@
                     weekday[5] = "Friday";
                     weekday[6] = "Saturday";
                                     
-                let d = new Date();
-                //Adding 10 days to today's date: Todays Date + (10 days * 24 hours * 60 min * 60 sec * 1000 millisecond)
-                let plus_ten_date = new Date(d.getTime()+(10*24*60*60*1000));
+                let today_date = new Date();
+                //Adding 10 days to today's date: Todays Date + (9 days * 24 hours * 60 min * 60 sec * 1000 millisecond)
+                let plus_ten_date = new Date(today_date.getTime()+(10*24*60*60*1000));
 
 
                 document.getElementById("end_day").innerHTML=weekday[plus_ten_date.getDay()];
                 document.getElementById("end_date").innerHTML=plus_ten_date.getDate()+" ";
                 document.getElementById("end_month").innerHTML=month[plus_ten_date.getMonth()]+" ";
                 document.getElementById("end_year").innerHTML=plus_ten_date.getFullYear();
+
+
+
                 
+
+                let today_hours = 23 -  today_date.getHours();
+                let ending_hours = 11;
+                let total_remaining_hours = today_hours+ending_hours;
+                let remaining_days= (plus_ten_date.getDate() - today_date.getDate() ) - 1 ;
+                if(total_remaining_hours>=24){
+                    remaining_days += 1;
+                    total_remaining_hours = Math.abs(24 - total_remaining_hours) ;
+
+                }
+
+
+                let todays_reamining_min = 59 - today_date.getMinutes();
+
+                let reamining_min = 30 + todays_reamining_min;
+
+                
+
+                
+                document.getElementById("day").innerHTML=remaining_days;
+
+                document.getElementById("hour").innerHTML=total_remaining_hours;
+
+                document.getElementById("min").innerHTML=reamining_min;
+
+
+
                 
                 
                 }
